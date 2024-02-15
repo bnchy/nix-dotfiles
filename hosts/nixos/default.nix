@@ -53,6 +53,8 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
+
+  programs.dconf.enable = true;
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
@@ -80,7 +82,8 @@
   environment.systemPackages = with pkgs; [
     #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #   wget
-    helix
+    gnomeExtensions.tiling-assistant
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
