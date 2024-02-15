@@ -3,7 +3,7 @@
     enable = true;
 
     userSettings = {
-      "glassit.alpha" = 220;
+      "glassit.alpha" = 225;
     };
 
     extensions = with pkgs.vscode-extensions; [
