@@ -28,6 +28,7 @@
       hunspellDicts.nl_NL
       neofetch
     ];
+    
     stateVersion = "23.11";
   };
 }

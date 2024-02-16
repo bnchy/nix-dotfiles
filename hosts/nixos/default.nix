@@ -49,6 +49,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
+    excludePackages = with pkgs; [xterm gnome.gnome-terminal];
     xkb.layout = "be";
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
