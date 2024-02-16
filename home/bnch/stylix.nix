@@ -23,26 +23,34 @@
       terminal = 0.8;
     };
 
-    fonts = {
-      serif = {
-        name = "Cantarell";
-        package = pkgs.cantarell-fonts;
+    fonts = let
+      luna-fonts = inputs.nix-dotfiles.packages.${pkgs.system};
+    in
+      with luna-fonts; {
+        serif = {
+          name = "EB Garamond";
+          package = pkgs.eb-garamond;
+        };
+
+        sansSerif = {
+          name = "Geist";
+          package = geist;
+        };
+
+        monospace = {
+          name = "GeistMono NFM";
+          package = geist-nf;
+        };
+
+        emoji = {
+          name = "Twitter Color Emoji";
+          package = pkgs.twitter-color-emoji;
+        };
       };
 
-      sansSerif = {
-        name = "Cantarell";
-        package = pkgs.cantarell-fonts;
-      };
-
-      monospace = {
-        name = "Fira Code";
-        package = pkgs.fira-code;
-      };
-
-      sizes = {
-        applications = 11;
-        desktop = 11;
-      };
+    cursor = {
+      name = "capitaine-cursors";
+      package = pkgs.capitaine-cursors;
     };
 
     targets = {

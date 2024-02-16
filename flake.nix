@@ -10,6 +10,9 @@
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-dotfiles.url = "github:bddvlpr/nix-dotfiles";
+    nix-dotfiles.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -31,6 +34,9 @@
       };
   in {
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
       nixos = mkSystem [./hosts/nixos];

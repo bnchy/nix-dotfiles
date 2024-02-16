@@ -1,22 +1,15 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   programs.vscode = {
     enable = true;
 
-    userSettings = {
-      "glassit.alpha" = 220;
+    userSettings = with config.stylix.fonts;{
+      "terminal.integrated.fontFamily" = "'${monospace.name}'";
+      "editor.fontFamily" = "'${monospace.name}'";
     };
 
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       angular.ng-template
-      (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          publisher = "s-nlf-fh";
-          name = "glassit";
-          version = "0.2.6";
-          sha256 = "sha256-LcAomgK91hnJWqAW4I0FAgTOwr8Kwv7ZhvGCgkokKuY=";
-        };
-      })
     ];
 
     enableUpdateCheck = false;

@@ -11,6 +11,7 @@
 
     ../common
     ./hardware.nix
+    ./greetd.nix
   ];
 
   home-manager = {
@@ -24,6 +25,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+    extraPortals = with pkgs; [xdg-desktop-portal-gtk xdg-desktop-portal-wlr];
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
@@ -33,6 +40,7 @@
   nixpkgs.config.allowUnfree = true;
 
   security.sudo.wheelNeedsPassword = false;
+  security.pam.services.swaylock = {};
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -46,23 +54,27 @@
     #   useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    excludePackages = with pkgs; [xterm gnome.gnome-terminal];
-    xkb.layout = "be";
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
-
   programs.dconf.enable = true;
+  programs.light.enable = true;
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
+  security.rtkit.enable = true;
+
+  services.pipewire = {
+    enable = true;
+
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+
+    pulse.enable = true;
+    jack.enable = true;
+  };
   # hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -84,7 +96,6 @@
     #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #   wget
     gnomeExtensions.tiling-assistant
-
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
