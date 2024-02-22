@@ -9,8 +9,6 @@
 
   stylix = {
     image = pkgs.fetchurl {
-      #url = "https://wallup.net/wp-content/uploads/2016/01/287035-SOMA-video_games-artwork.jpg";
-      #url = "https://w.wallhaven.cc/full/1p/wallhaven-1poo61.jpg";
       url = "https://w.wallhaven.cc/full/rr/wallhaven-rr5p1j.png";
       hash = "sha256-yFM40mBoPa4SB9kde7zaBUtaQW5Kzh+lI0NiDwZ70GY=";
     };
@@ -57,4 +55,11 @@
       vscode.enable = false;
     };
   };
+
+  gtk.iconTheme = {
+    name = "Papirus";
+    package = pkgs.papirus-icon-theme;
+  };
+
+  home.packages = [pkgs.noto-fonts-cjk-sans];
 }

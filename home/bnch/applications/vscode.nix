@@ -1,8 +1,12 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.vscode = {
     enable = true;
 
-    userSettings = with config.stylix.fonts;{
+    userSettings = with config.stylix.fonts; {
       "terminal.integrated.fontFamily" = "'${monospace.name}'";
       "editor.fontFamily" = "'${monospace.name}'";
     };
